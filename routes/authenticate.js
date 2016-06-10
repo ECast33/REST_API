@@ -28,8 +28,6 @@ module.exports = function( passport ){
         res.render('login');
     });
 
-    
-
     router.post('/login', passport.authenticate('local'), function (req, res ) {
 
         res.redirect('/');
