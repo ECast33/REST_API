@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Auth API </title>
+</head>
+<body>
+<% if (!isAuthenticated) { %>
+<a href="/login"> Log In here</a>
+
+<%} else { %>
+Hello, <%= user.name %>!
+<div>
+    <a href="/logout">Logout</a>
+</div>
+
+<% }%>
+</body>
+</html>

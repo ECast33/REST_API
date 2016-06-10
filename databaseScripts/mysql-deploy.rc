@@ -1,0 +1,13 @@
+# Master install file
+#
+
+# Create Tables
+#
+  CreateTable_Player               -- @ ./schemaScripts/CreateTable_Player.sql
+
+# Stpred_procedures
+#
+#
+   sp_Player_Create                -- @ ./routineScripts/sp_Player_Create.sql
+   sp_Player_BuilderOne            -- @ ./routineScripts/sp_Player_BuilderOne.sql
+   sp_Player_BuilderAll            -- @ ./routineScripts/sp_Player_BuilderAll.sql
