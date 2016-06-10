@@ -1,8 +1,6 @@
 var mysql      = require('mysql');
-    express = require('express');
 
-
-module.exports = function ( )
+module.exports = function ( pool)
 {
 
     var database =
