@@ -1,15 +1,14 @@
-var _            = require('lodash'),
-    mysql        = require('mysql'),
-    mysqlServ    = require('../../config/mysqlServ')(),
-    sprintf      = require('sprintf'),
-    chalk        = require('chalk');
+var _         = require('lodash');
+var mysql      = require('mysql');
+var mysqlServ = require('../../config/mysqlServ')();
+var sprintf   = require('sprintf');
 
 module.exports = function ( )  {
-
+    
     function readImpl(req, res, next )
     {
         var sp_script = sprintf( "CALL %s( %s, %s, %s );",
-            'sp_User_BuilderOne',
+            'sp_Player_BuilderOne',
 
             mysql.escape( req.body.name ),
             mysql.escape( req.body.sport ),
@@ -26,11 +25,11 @@ module.exports = function ( )  {
             }
         );
     }
-
+    
     function writeImpl( req, res, next )
     {
         var sp_script = sprintf( "CALL %s( %s, %s );",
-            'sp_User_Create',
+            'sp_Player_Create',
             mysql.escape( req.body.name ),
             mysql.escape( req.body.sport )
         );
@@ -45,13 +44,13 @@ module.exports = function ( )  {
             }
         );
     }
-
-
+    
+    
     function readAllImpl( req, res, next  )
     {
         var sp_script = sprintf( "CALL %s( );",
-            'sp_User_BuilderAll'
-
+            'sp_Player_BuilderAll'
+            
         );
 
         mysqlServ.executeSql( sp_script ).then (
@@ -64,12 +63,12 @@ module.exports = function ( )  {
             }
         );
     }
-
+    
     function post( req, res, next)
     {
         if ( undefined === req.body )
         {
-            console.log( chalk.red('!! Attempting post : ERROR - missing body' ));
+            console.log( chalk.red('!! Attempting Tag.post : ERROR - missing body' ));
 
             return res.status( 401 ).send( {
                 success: false,

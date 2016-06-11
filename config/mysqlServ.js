@@ -2,7 +2,7 @@ var mysql      = require('mysql'),
     db         = require('./database')();
 
 
-module.exports = function ( pool )
+module.exports = function (  )
 {
     function returnAll( value )
     {

@@ -31,6 +31,9 @@ var options =
 var dbInstaller = require('./config/dbInstaller')( options );
 
 dbInstaller.installBuildScript();
+
+
+
 /**
  * Get port from environment and store in Express.
  */
