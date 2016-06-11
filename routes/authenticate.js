@@ -3,16 +3,6 @@ var router = express.Router();
 
 module.exports = function( passport ){
 
-    //sends successful login state back to angular
-    router.get('/success', function(req, res){
-        res.send({state: 'success', user: req.user ? req.user : null});
-    });
-
-    //sends failure login state back to angular
-    router.get('/failure', function(req, res){
-        res.send({state: 'failure', user: null, message: "Invalid username or password"});
-    });
-
     //log in
     router.get('/', function( req, res )
     {
@@ -23,6 +13,20 @@ module.exports = function( passport ){
         });
 
     });
+
+
+    //sends successful login state back to angular
+    router.get('/success', function(req, res){
+        res.send({state: 'success', user: req.user ? req.user : null});
+    });
+
+    //sends failure login state back to angular
+    router.get('/failure', function(req, res){
+        res.send({state: 'failure', user: null, message: "Invalid username or password"});
+    });
+
+
+
     router.get('/login' , function ( req, res )
     {
         res.render('login');
@@ -46,25 +50,27 @@ module.exports = function( passport ){
     });
     
     //api
+    router.post('/api', ensureAuth, function ( req, res, next )
+    {
+        next();
+    });
 
-//     router.use('/api', passport.authenticate('local'));
-//
-// function ensureAuth( req, res, next ) {
-//
-//     if( req.isAuthenticated())
-//     {
-//         next();
-//     }else
-//     {
-//         res.send( 403 );
-//     }
-// }
-//     router.post('/api' , ensureAuth, function ( req, res )
-//     {
-//
-//         res.json( [ {value : 'foo '},{value : 'bar'},{value : 'baz'}]);
-//
-//     });
+function ensureAuth( req, res, next ) {
+
+    if( req.isAuthenticated())
+    {
+        next();
+    }else
+    {
+        res.send( 403 );
+    }
+}
+    router.post('/api' , ensureAuth, function ( req, res )
+    {
+
+        res.json( [ {value : 'foo '},{value : 'bar'},{value : 'baz'}]);
+
+    });
 
     return router;
 

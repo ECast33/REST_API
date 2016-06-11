@@ -37,9 +37,6 @@ app.use( expressSession(
 app.use( passport.initialize());
 app.use(passport.session());
 
-//require ( './config/routes' ).init ( app );
-
-
 app.use('/auth', authenticate);
 app.use('/api', routes );
 app.use('/', authenticate );
