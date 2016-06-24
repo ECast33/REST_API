@@ -16,7 +16,7 @@ var initPassport = require('./passport-init');
 initPassport(passport);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -39,7 +39,7 @@ app.use(passport.session());
 
 app.use('/auth', authenticate);
 app.use('/api', routes );
-app.use('/', authenticate );
+app.use('/', routes );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

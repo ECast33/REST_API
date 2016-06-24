@@ -6,7 +6,7 @@ module.exports = function( passport ){
     //log in
     router.get('/', function( req, res )
     {
-        res.render('../views/index', {
+        res.render('../public/index', {
 
             isAuthenticated: req.isAuthenticated(),
             user : req.user
@@ -27,18 +27,18 @@ module.exports = function( passport ){
 
 
 
-    router.get('/login' , function ( req, res )
-    {
-        res.render('login');
-    });
-
-    router.post('/login', passport.authenticate('local'), function (req, res ) {
-
-        res.redirect('/');
-    });
+    // router.get('/login' , function ( req, res )
+    // {
+    //     res.render('login');
+    // });
+    //
+    // router.post('/login', passport.authenticate('local'), function (req, res ) {
+    //
+    //     res.redirect('/');
+    // });
 
     //sign up
-    router.post('/signup', passport.authenticate('signup', {
+    router.post('/login', passport.authenticate('login', {
         successRedirect: '/auth/success',
         failureRedirect: '/auth/failure'
     }));
