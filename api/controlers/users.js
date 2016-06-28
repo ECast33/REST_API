@@ -11,9 +11,9 @@ module.exports = function ( )  {
         var sp_script = sprintf( "CALL %s( %s, %s, %s );",
             'sp_User_BuilderOne',
 
-            mysql.escape( req.body.name ),
-            mysql.escape( req.body.sport ),
-            mysql.escape( req.body.playerId)
+            mysql.escape( req.body.userName ),
+            mysql.escape( req.body.password ),
+            mysql.escape( req.body.userId)
         );
 
         mysqlServ.executeSql( sp_script ).then (
@@ -21,7 +21,7 @@ module.exports = function ( )  {
             function ( value )
             {
 
-                res.send( value );
+               return res.json( value );
 
             }
         );
@@ -31,8 +31,8 @@ module.exports = function ( )  {
     {
         var sp_script = sprintf( "CALL %s( %s, %s );",
             'sp_User_Create',
-            mysql.escape( req.body.name ),
-            mysql.escape( req.body.sport )
+            mysql.escape( req.body.userName ),
+            mysql.escape( req.body.password )
         );
 
         mysqlServ.executeSql( sp_script ).then (
@@ -40,7 +40,7 @@ module.exports = function ( )  {
             function ( value )
             {
 
-                res.json( value );
+              return  res.json( value );
 
             }
         );

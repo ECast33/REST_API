@@ -3,7 +3,8 @@ var mysql      = require('mysql');
 var mysqlServ = require('../../config/mysqlServ')();
 var sprintf   = require('sprintf');
 
-module.exports = function ( )  {
+module.exports = function ( )
+{
     
     function readImpl(req, res, next )
     {
@@ -58,7 +59,7 @@ module.exports = function ( )  {
             function ( value )
             {
 
-                res.json( value );
+               return res.json( value );
 
             }
         );

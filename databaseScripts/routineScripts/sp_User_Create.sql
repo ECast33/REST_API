@@ -4,9 +4,7 @@ DROP PROCEDURE IF EXISTS sp_User_Create
 
 CREATE PROCEDURE sp_User_Create
 (
-    IN pFirstName       Varchar(255)
-,	IN pLastName        Varchar(255)
-,	IN pEmail           Varchar(255)
+	IN pUserName        Varchar(255)
 ,	IN pPassword        Varchar(255)
 )
 this_proc:BEGIN
@@ -15,19 +13,15 @@ DECLARE pUserId 	    Int DEFAULT 0;
 
 INSERT INTO users
 (
-    firstName
-,   lastName
-,   email
+    userName
 ,   password
 )VALUES
 (
-    pFirstName
-,   pLastName
-,   pEmail
+    pUserName
 ,   pPassword
 );
 SET pUserId = LAST_INSERT_ID();
 
-CALL sp_Player_BuilderOne( pEmail, pPassword, pUserId );
+CALL sp_User_BuilderOne( pUserName, pPassword, pUserId );
 
 END

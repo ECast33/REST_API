@@ -1,8 +1,15 @@
-var app = angular.module('REST_API', ['ngRoute']);
+var app = angular.module('REST_API', ['ngRoute', 'ngResource']).run( function ( $rootScope ) {
+
+    $rootScope.authenticated = false;
+    $rootScope.current_user = '';
+
+});
 
 
-app.config(function($routeProvider){
-    $routeProvider
+app.config(
+    function( $routeProvider )
+    {
+        $routeProvider
     //the timeline display
         .when('/', {
             templateUrl: 'main.html',
@@ -20,33 +27,71 @@ app.config(function($routeProvider){
         });
 });
 
-app.controller('mainController', function  ( $scope ) {
+app.controller('mainController', function  ( $scope, $rootScope ) {
 
 
-
+    $scope.user = $rootScope.current_user;
 });
 
-app.controller('authController', function ( $scope ) {
+app.controller('authController', function ( $scope, $http, $rootScope, $location ) {
 
     $scope.user =
     {
-        username: '',
-        password: ''
+        userName: '',
+        password: '',
+        userId  : -1
     };
 
     $scope.error_message = '';
 
     $scope.login = function ( )
     {
-      //TODO implement this
-        $scope.error_message = 'login request for ' + $scope.user.username;
+
+        $scope.user.read = 1;
+
+        $http.post('api/users', $scope.user ).success(
+            
+            function( data )
+            {
+                if( 0 == data.length  )
+                {
+                    $location.path('/register');
+                }
+                else
+                {
+                    $rootScope.authenticated = true;
+                    $rootScope.current_user = data[0].userName;
+                    $location.path('/');
+                }
+
+
+            });
 
     };
 
     $scope.register = function ( )
     {
-        //TODO: Implement this
-        $scope.error_message = 'register request for ' + $scope.user.username;
+
+        $scope.user.write = 1;
+
+        $http.post('api/users', $scope.user ).success(
+
+            function( data )
+            {
+                if( 0 == data.length  )
+                {
+                    $scope.error_message = 'Failed to register for ' + $scope.user.username;
+                    $location.path('/register');
+                }
+                else
+                {
+                    $rootScope.authenticated = true;
+                    $rootScope.current_user = data[0].userName;
+                    $location.path('/');
+                }
+
+            });
+
     }
 
 });
