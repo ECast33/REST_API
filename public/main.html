@@ -1,5 +1,149 @@
-<div ng-show="authenticated" class="mainpage">
+<div ng-show="authenticated" class="clearfix">
 
+		<h1>  Welcome {{current_user}} You have been Authenticated. Thanks for visiting! </h1>
+		<h2>  Welcome {{current_user}} You have been Authenticated. Thanks for visiting! </h2>
+		<h3>  Welcome {{current_user}} You have been Authenticated. Thanks for visiting! </h3>
 		<h4>  Welcome {{current_user}} You have been Authenticated. Thanks for visiting! </h4>
+</div>
+
+<div class="jumbotron" >
+    <div >
+
+        <!-- Large button Standard button Inside a div  -->
+        <button type="button" class="btn btn-default ">Default</button>
+
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" class="btn btn-primary btn-sm">Primary</button>
+
+    </div>
+
+
+
+    <!-- Indicates a successful or positive action -->
+    <button type="button" class="btn btn-success">Success</button>
+
+    <!-- Contextual button for informational alert messages -->
+    <button type="button" class="btn btn-info btn-xs">Info</button>
+
+    <!-- Indicates caution should be taken with this action -->
+    <button type="button" class="btn btn-warning btn-lg">Warning</button>
+
+    <!-- Indicates a dangerous or potentially negative action -->
+    <button type="button" class="btn btn-danger">Danger</button>
+
+    <!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+    <button type="button" class="btn btn-link">Link</button>
+
+    <div class="btn-group btn-group-lg " role="group" >
+
+        <p>Look at this Button group</p>
+        <button type="button" class="btn btn-primary">Small</button>
+        <button type="button" class="btn btn-info">Medium</button>
+        <button type="button" class="btn btn-warning">Large</button>
+   </div>
+
+    <div class="container">
+
+        <p> Hello there</p>
+        <button type="button" class="btn btn-primary">Small</button>
+        <p>
+            <span class="glyphicon glyphicon-film"></span>
+
+            <a href="#" class="btn btn-primary btn-lg">Trash <span class="glyphicon glyphicon-trash"></span></a>
+
+            <button type="button" class="btn btn-default btn-lg">
+
+                <!-- aria-hidden hides decorative icons from screen readers -->
+                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Call Me
+            </button>
+        </p>
+        <span class="text-muted">Quis nostrud</span>
+        <span class="text-primary">exercitation ullamco</span>
+        <span class="text-success">laboris nisi</span>
+        <span class="text-info">ut aliquip</span>
+        <span class="text-warning">ex ea commodo</span>
+        <span class="text-danger">consequat.</span> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+        <!-- You can set contextual backgrounds -->
+        <p class="bg-primary">Duis aute irure dolor</p>
+        <p class="bg-success">In reprehenderit</p>
+        <p class="bg-info">In voluptate velit</p>
+        <p class="bg-warning">Esse cillum dolore eu</p>
+        <p class="bg-danger">Fugiat nulla pariatur</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Basic horizontal menu -->
+        <ul class="list-inline">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+
+            <!-- Add a dropdown menu -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contact
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Achedule Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Shop</a></li>
+        </ul>
+
+        <!-- Basic vertical menu -->
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+
+            <!-- Add drop down menu -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contact
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Schedule Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Shop</a></li>
+        </ul>
+
+        <!-- Use nav-pills, nav-tabs. To center tabs add nav-justified to the class for ul -->
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#superman">Superman</a></li>
+            <li><a data-toggle="tab" href="#batman">Batman</a></li>
+
+            <!-- Dropdown menu item -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Flash
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                    <!-- Disable a tab -->
+                    <li class="disabled"><a data-toggle="tab" href="#flash">The Flash</a></li>
+                    <li><a data-toggle="tab" href="#kidflash">Kid Flash</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="superman" class="tab-pane fade in active">
+                <p>Superman is a fictional superhero appearing in American comic books published by DC Comics. </p>
+            </div>
+            <div id="batman" class="tab-pane fade">
+                <p>Batman is a fictional superhero appearing in American comic books published by DC Comics. </p>
+            </div>
+            <div id="flash" class="tab-pane fade">
+                <p>The Flash is a fictional superhero appearing in American comic books published by DC Comics. </p>
+            </div>
+            <div id="kidflash" class="tab-pane fade">
+                <p>Kid Flash is a fictional superhero appearing in American comic books published by DC Comics. </p>
+            </div>
+        </div>
+
+    </div>
 
 </div>
+
