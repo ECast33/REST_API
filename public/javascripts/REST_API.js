@@ -19,7 +19,7 @@ app.config(
         .when('/login', {
             templateUrl: 'login.html',
             controller: 'authController'
-        })
+        })        
         //the signup display
         .when('/register', {
             templateUrl: 'register.html',
@@ -27,10 +27,17 @@ app.config(
         });
 });
 
-app.controller('mainController', function  ( $scope, $rootScope ) {
+app.controller('mainController', function  ( $scope, $rootScope, $location )
+{
+    if( false === $rootScope.authenticated  )
+    {
+        $location.path('/login');
 
+    }else
+    {
+        $scope.user = $rootScope.current_user;
+    }
 
-    $scope.user = $rootScope.current_user;
 });
 
 app.controller('authController', function ( $scope, $http, $rootScope, $location ) {
@@ -44,54 +51,76 @@ app.controller('authController', function ( $scope, $http, $rootScope, $location
 
     $scope.error_message = '';
 
+
+    $scope.signout = function ( )
+    {
+        $rootScope.authenticated = false;
+        $location.path('/login');
+
+    };
+
     $scope.login = function ( )
     {
 
         $scope.user.read = 1;
 
-        $http.post('api/users', $scope.user ).success(
-            
-            function( data )
-            {
-                if( 0 == data.length  )
+        if( '' === $scope.user.userName && '' === $scope.user.password )
+        {
+            $scope.user.read = 0;
+            $scope.error_message = 'please the required information';
+            $location.path('/register');
+        }
+        else
+        {
+            $scope.user.read = 1;
+            $http.post('api/users', $scope.user ).success(
+
+                function( data )
                 {
-                    $location.path('/register');
-                }
-                else
-                {
-                    $rootScope.authenticated = true;
-                    $rootScope.current_user = data[0].userName;
-                    $location.path('/');
-                }
+                    if( 0 === data.length )
+                    {
+                        $scope.error_message = 'Username and password not found';
+                        $location.path('/register');
+
+                    }
+                    else
+                    {
+                        $rootScope.authenticated = true;
+                        $rootScope.current_user = data[0].userName;
+                        $location.path('/');
+                    }
 
 
-            });
+                });
+        }
 
     };
 
     $scope.register = function ( )
     {
 
-        $scope.user.write = 1;
+        if( '' === $scope.user.userName && '' === $scope.user.password )
+        {
+            $scope.user.write = 0;
+            $scope.error_message = 'please the required information';
+            $location.path('/register');
+        }
+        else
+        {
+            $scope.user.write = 1;
+            $http.post('api/users', $scope.user ).success(
 
-        $http.post('api/users', $scope.user ).success(
-
-            function( data )
-            {
-                if( 0 == data.length  )
-                {
-                    $scope.error_message = 'Failed to register for ' + $scope.user.username;
-                    $location.path('/register');
-                }
-                else
+                function( data )
                 {
                     $rootScope.authenticated = true;
                     $rootScope.current_user = data[0].userName;
                     $location.path('/');
-                }
 
-            });
+                });
+        }
 
-    }
+    };
+
+
 
 });

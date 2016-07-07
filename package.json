@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular": "^1.5.7",
     "bcrypt": "^0.8.6",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.0",
