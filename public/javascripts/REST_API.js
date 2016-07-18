@@ -19,7 +19,12 @@ app.config(
         .when('/login', {
             templateUrl: 'login.html',
             controller: 'authController'
-        })        
+        })
+        //the logout display
+        .when('/logout', {
+            templateUrl: 'login.html',
+            controller: 'authController'
+        })
         //the signup display
         .when('/register', {
             templateUrl: 'register.html',
